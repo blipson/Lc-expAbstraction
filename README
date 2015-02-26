@@ -1,0 +1,26 @@
+This program was developed by Ben Lipson in the Spring of 2014.
+
+This program includes an LC-exp super class with the three subclasses var-exp,
+lambda-exp, and app-exp. Each subclass has constructors which sets the necessary
+state variables (either var, which is typedef'd at the beginning, or LC-exp).
+All three predicates are defined in each subclass, that way we can determine which 
+subclass is calling which predicate. If the correct subclass calls the
+correct predicate, then it returns true, otherwise it returns false. The
+extractors for all var types are set up to return the correct value, and the 
+extractors for all LC-exp types are set up to check to see if the value is an
+LC-exp, then to recur on it correctly and return the correct value. There is a
+separate print function for each part of the different expressions. The var_exp
+subclass only has one because it only has the var identifier, the lambda_exp
+subclass has two, one for the bound_var and one for the body, and the app_exp
+subclass only needs one, since both rand and rator take the same argument of an
+LC_exp. The tests are included in the main() function of our program. Here are the results:
+
+% ./PLTest 
+VAR-EXP: (lambda (y))
+LAMBDA-EXP: (lambda (y))(lambda (y))
+APP-EXP: (lambda (y))(lambda (y)) (lambda (y))
+
+
+It's important to note that for the print functions you have to call the correct
+print method based on what type of LC-expression goes into each argument for
+lambda-exp and app-exp.
